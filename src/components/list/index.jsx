@@ -1,36 +1,17 @@
-import React from 'react'
+import React from "react";
 import CommonCard from "../../common/CardMedia/CardMedia";
-import Grid from "@mui/material/Grid"
-
-const ProductList = () => {
+import Grid from "@mui/material/Grid";
+const ProductList = ({ products }) => {
   return (
     <Grid container spacing={3}>
-        <Grid item xs={3}>
-            <CommonCard/>
-        </Grid>
-        <Grid item xs={3}>
-            <CommonCard/>
-        </Grid>
-        <Grid item xs={3}>
-            <CommonCard/>
-        </Grid>
-        <Grid item xs={3}>
-            <CommonCard/>
-        </Grid>
-        <Grid item xs={3}>
-            <CommonCard/>
-        </Grid>
-        <Grid item xs={3}>
-            <CommonCard/>
-        </Grid>
-        <Grid item xs={3}>
-            <CommonCard/>
-        </Grid>
-        <Grid item xs={3}>
-            <CommonCard/>
-        </Grid>
+      {products &&
+        products.map((product, index) => (
+          <Grid item xs={12} sm={4} key={index}>
+            <CommonCard key={product.id} product={product} />
+          </Grid>
+        ))}
     </Grid>
-  )
-}
+  );
+};
 
-export default ProductList
+export default ProductList;

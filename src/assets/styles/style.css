@@ -4,7 +4,15 @@
     box-sizing: border-box;
     direction: rtl
 }
+
 @font-face {
-    font-family: IranSans;
-    src: url("../fonts/IranSansWeb.ttf");
+    font-family: "IranNastaliq";
+    src: local("IranNastaliq"),
+     url("../fonts/IranNastaliq.ttf") format("truetype");
+    font-weight: bold;
+    font-size: 40px;
+}
+
+body{
+    font-family:"IranNastaliq";
 }
