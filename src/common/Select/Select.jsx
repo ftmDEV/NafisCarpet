@@ -8,12 +8,14 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles((theme) => ({
   select: {
     border: "1px solid #fff",
+    backgroundColor: theme.palette.cream.main,
     color: "#000",
     fontSize: "30px",
+    borderRadius: "10px",
     "&::placeholder": {
       textOverflow: "ellipsis !important",
       color: "blue",
-      fontSize: "30px",
+      fontSize: "50px",
     },
   },
 }));

@@ -3,6 +3,7 @@ import { Grid, Paper, Typography, Button } from "@mui/material";
 import ShoppingCart from "../../common/CardMedia/shoppingCart";
 import { ProductContext } from "../../context/context";
 import { constant } from "../../utils/constant";
+import Navbar from "../../components/navbar";
 
 const Basket = () => {
   const [rugsCost, setCost] = useState(0);
@@ -18,6 +19,7 @@ const Basket = () => {
 
   return (
     <>
+      <Navbar />
       {basketList.length > 0 ? (
         <Grid container spacing={4}>
           <Grid item xs={7}>

@@ -1,6 +1,7 @@
 import { createContext, useReducer } from "react";
 import Reducer, { initialState } from "./reducer";
 import { makeStyles } from "@mui/styles";
+
 export const ProductContext = createContext(initialState);
 
 const useStyles = makeStyles((theme) => ({
@@ -8,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     minHeight: "100vh",
     padding: "15px 5%",
-    // backgroundColor:"#E3C38A"
     background: "linear-gradient(10deg,#000,#163A0D )",
   },
 }));

@@ -3,6 +3,7 @@ import { Grid, Paper, Typography, Button } from "@mui/material";
 import { ProductContext } from "../../context/context";
 import { constant } from "../../utils/constant";
 import CommonCard from "../../common/CardMedia/CardMedia";
+import Navbar from "../../components/navbar";
 
 const WishList = () => {
   const { store, dispatch } = useContext(ProductContext);
@@ -10,6 +11,7 @@ const WishList = () => {
 
   return (
     <>
+      <Navbar />
       {WishListList.length > 0 ? (
         <Grid container spacing={4}>
           {WishListList.map((product) => (

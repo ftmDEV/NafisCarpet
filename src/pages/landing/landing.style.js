@@ -2,7 +2,7 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles((theme) => ({
   root: {
-    // background: theme.palette.primary.linear,
+    width: "100%",
   },
   flex: {
     display: "flex",
@@ -11,7 +11,6 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   section1: {
-    // backgroundColor: "red",
     padding: "50px 100px",
     color: theme.palette.cream.main,
     "& img": {
@@ -22,6 +21,10 @@ export const useStyles = makeStyles((theme) => ({
       outlineOffset: "7px",
       overflow: "hidden",
       objectFit: "cover",
+    },
+    "&::after": {
+      content: "flkehjf",
+      backgroundColor: "red",
     },
   },
   button: {

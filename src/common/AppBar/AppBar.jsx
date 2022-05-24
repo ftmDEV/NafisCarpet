@@ -130,7 +130,7 @@ const ResponsiveAppBar = () => {
               </Tooltip> */}
               <Typography variant="h4">{constant.TOOLTIPS[0]}</Typography>
             </NavLink>
-            <NavLink to="/profile" className={classes.link}>
+            <NavLink to="/account" className={classes.link}>
               {/* <Tooltip title={constant.TOOLTIPS[2]}>
                 <IconButton onClick={handleOpenUserMenu}>
                   <AccountBoxIcon className={classes.icon} />
@@ -138,7 +138,7 @@ const ResponsiveAppBar = () => {
               </Tooltip> */}
               <Typography variant="h4">{constant.TOOLTIPS[2]}</Typography>
             </NavLink>
-            <NavLink to="basket" className={classes.link}>
+            <NavLink to="/basket" className={classes.link}>
               {/* <Tooltip title={constant.TOOLTIPS[1]}>
               <IconButton>
                 <ShoppingBasketIcon className={classes.icon} />

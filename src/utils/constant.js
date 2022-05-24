@@ -40,6 +40,8 @@ export const constant = {
     ABOUT_CLEANING: "درباره شستشو",
     SHOP_NOW: "همین حالا خرید کن",
     CONSULTANT_INFO: "درخواست مشاوره",
+    SUBMIT: "ثبت",
+    CANCLE: "انصراف",
   },
   SHOP_INFO: {
     EMAIL: {
@@ -71,6 +73,25 @@ export const constant = {
     SIZES: [6, 12, 18],
     FILTERS: ["جدیدترین", "قدیمی ترین", "گران ترین", "ارزان ترین"],
   },
+  ACCOUNT_FORM: {
+    LOGIN: {
+      TITLE: "ورود",
+      GUID_LINE: " نام کاربری شما شماره همراه یا ایمیل شماست ",
+      EMAIL: "پست الکترونیک",
+      PHONE_NUMBER: "شماره همراه",
+      USER_NAME: "نام کاربری",
+      PASSWORD: "رمز عبور",
+      SIGNED_UP: "ثبت نام نکرده اید؟",
+    },
+    REGISTER: {
+      TITLE: "ثبت نام",
+      EMAIL: "پست الکترونیک",
+      USER_NAME: "نام کاربری",
+      PASSWORD: "رمزعبور",
+      CONFIRM_PASSWORD: "تکرار رمز عبور",
+      LOGED_IN: "قبلا ثبت نام کرده اید؟",
+    },
+  },
   BASKET: {
     MESSAGE: "سبد خرید شما خالی است.",
     BILL: "فاکتور خرید",
@@ -83,5 +104,14 @@ export const constant = {
   WishList: {
     MESSAGE: "لیست علاقه مندی های شما خالی است.",
     REMOVE: "حذف ",
+  },
+  ADMIN_PAGE: {
+    PRODUCTS_LIST: "لیست کالاها",
+    NEW_PRODUCT: "افزودن کالا جدید",
+    NAME: "نام ",
+    PRICE: "قیمت",
+    DISCOUNT: "درصد تخفیف",
+    DESCRIPTION: "توضیحات",
+    UPLOUD_BTN: "آپلود عکس",
   },
 };

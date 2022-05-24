@@ -1,10 +1,14 @@
 export const initialState = {
+  token: "",
   products: [],
   basket: [],
   favorites: [],
 };
 const Reducer = (state, action) => {
   switch (action.type) {
+    case "REGISTER":
+      localStorage.setItem("token", JSON.stringify(action.payload));
+      return;
     case "GET_DATA_LIST":
       return {
         ...state,
