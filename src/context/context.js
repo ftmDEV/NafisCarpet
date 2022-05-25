@@ -5,12 +5,7 @@ import { makeStyles } from "@mui/styles";
 export const ProductContext = createContext(initialState);
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    width: "100%",
-    minHeight: "100vh",
-    padding: "15px 5%",
-    background: "linear-gradient(10deg,#000,#163A0D )",
-  },
+  container: {},
 }));
 
 const ProductProvider = ({ children }) => {

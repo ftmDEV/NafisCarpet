@@ -1,10 +1,14 @@
 import React from "react";
+import { Card } from "@mui/material";
+import CustomTable from "../../common/table/Table";
 import AddNewProduct from "./AddNewProduct";
 
 const AdminPanel = () => {
   return (
     <div>
-      <h1>product list</h1>
+      <Card>
+        <CustomTable />
+      </Card>
       <AddNewProduct />
     </div>
   );
