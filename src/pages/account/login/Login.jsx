@@ -24,7 +24,7 @@ const Login = () => {
   };
   const handleSubmit = (e) => {
     axios
-      .post("http://api.developer-studio.ir/api/auth/Login", state, {
+      .post("http://api.developer-studio.ir/api/auth/login", state, {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
@@ -32,7 +32,7 @@ const Login = () => {
       })
       .then((res) => {
         dispatch({ type: "LOGIN", payload: res.data.access_token });
-        console.log(JSON.parse(localStorage.getItem("token")), "token");
+        localStorage.setItem("token", res.data.access_token);
         navigate("/");
       })
       .catch((err) => {

@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 *{
     padding: 0;
     margin: 0;
@@ -6,29 +6,26 @@
     direction: rtl
 }
 
-@font-face {
+/* @font-face {
     font-family: "IranNastaliq";
     src: local("IranNastaliq"),
      url("../fonts/IranNastaliq.ttf") format("truetype");
+     url('../fonts/TiroTamil-Italic.ttf') format("truetype");
     font-weight: bold;
-    font-size: 150px;
-}
-
-@font-face {
-    font-family: 'Nanum Gothic';
-    src: url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-}
+    font-size: 30px !important;
+} */
 
 body{
-    font-family:"IranNastaliq" ,'Nanum Gothic', sans-serif ;
+    min-height: auto;
+    font-family: 'Nanum Gothic', sans-serif;
     background: linear-gradient(10deg, #000, #163A0D);
     background-image: url("../images/back3.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: cover;
+    background-size:100%;
     background-blend-mode: darken;
     width: 100%;
-
+    font-variant-numeric: oldstyle-nums;
     padding:20px 100px;
         
 }

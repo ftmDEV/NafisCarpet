@@ -35,7 +35,7 @@ const Register = () => {
       })
       .then((res) => {
         dispatch({ type: "REGISTER", payload: res.data.access_token });
-        console.log(JSON.parse(localStorage.getItem("token")), "token");
+        localStorage.setItem("token", res.data.access_token);
         navigate("/");
       })
       .catch((err) => {

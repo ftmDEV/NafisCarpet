@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SelectSmall = ({ label, items }) => {
+const SelectSmall = ({ label, items, onInputChange }) => {
   const [value, setValue] = React.useState("");
   const classes = useStyles();
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    onInputChange(event.target.value);
   };
 
   return (
@@ -46,7 +46,7 @@ const SelectSmall = ({ label, items }) => {
           <em>None</em>
         </MenuItem> */}
         {items.map((item) => (
-          <MenuItem value={item}>{item}</MenuItem>
+          <MenuItem value={item.id}>{item.name}</MenuItem>
         ))}
       </Select>
     </FormControl>
