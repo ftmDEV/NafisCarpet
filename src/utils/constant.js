@@ -26,17 +26,19 @@ export const constant = {
     ],
   },
   MENU: [
-    { id: 1, label: "صفحه اصلی", link: "/" },
+    { id: 1, label: "صفحه اصلی", link: "/landing" },
     { id: 2, label: "فروشگاه", link: "/store" },
     { id: 3, label: "درباره ما", link: "/about_us" },
     { id: 4, label: "ارتباط با ما", link: "/contact_us" },
   ],
-  TOOLTIPS: ["لیست علاقه مندی ها", "سبد خرید", "پروفایل"],
+  TOOLTIPS: ["لیست علاقه مندی ها", "خروج", "سبد خرید"],
   ACCOUNT: ["ثبت نام", "ورود", "خروج"],
   BUTTONS: {
     ADD_TO_BASKET: "اضافه کردن به سبد خرید",
     ADD_TO_FAVS: "اضافه کردن به لیست علاقه مندی ها",
     REMOVE: "حذف",
+    EDIT: "ویرایش",
+    ADD_PRODUCT: "اضافه کردن کالا",
     ABOUT_CLEANING: "درباره شستشو",
     SHOP_NOW: "همین حالا خرید کن",
     CONSULTANT_INFO: "درخواست مشاوره",
@@ -70,8 +72,18 @@ export const constant = {
     LABEL: "فیلتر بر اساس",
     COLOR: "رنگ",
     SIZE: "اندازه",
-    SIZES: [6, 12, 18],
-    FILTERS: ["جدیدترین", "قدیمی ترین", "گران ترین", "ارزان ترین"],
+    SIZES: [
+      { id: 2, name: "6" },
+      { id: 3, name: "12" },
+      { id: 4, name: "18" },
+    ],
+    FILTERS: [
+      { id: 5, name: "قدیمی ترین", link: "older" },
+      { id: 7, name: "جدیدترین", link: "newest" },
+      { id: 6, name: "گران ترین", link: "price_decs" },
+      { id: 8, name: "ارزان ترین", link: "price" },
+    ],
+    BUTTON: "اعمال فیلتر",
   },
   ACCOUNT_FORM: {
     LOGIN: {
@@ -106,6 +118,7 @@ export const constant = {
     REMOVE: "حذف ",
   },
   ADMIN_PAGE: {
+    ADD_PRODUCT_TITLE: "لطفا اطلاعات فرش را وارد کنید.",
     PRODUCTS_LIST: "لیست کالاها",
     NEW_PRODUCT: "افزودن کالا جدید",
     NAME: "نام ",

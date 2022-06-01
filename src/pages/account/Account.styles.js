@@ -5,11 +5,17 @@ export const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.linear,
   },
   form: {
-    width: "100%",
+    width: "35%",
     height: "94vh",
     backgroundColor: theme.palette.cream.light,
     padding: " 40px 50px",
+    margin: "0 auto",
     borderRadius: "10px",
+    [theme.breakpoints.down("md")]: {
+      width: "90%",
+      margin: 0,
+      // backgroundColor: "red",
+    },
   },
   title: {
     textAlign: "center",

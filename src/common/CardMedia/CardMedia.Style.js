@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme) => ({
   card: {
     backgroundColor: theme.palette.cream.light,
     padding: "15px 0",
-    height: "510px",
+    height: "auto",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -18,8 +18,8 @@ export const useStyles = makeStyles((theme) => ({
   button: {
     width: "100px",
     height: "40px",
+    padding: "10px 0",
     margin: "0",
-    padding: "2px 0",
     backgroundColor: "#d19335",
     borderRadius: "3px",
     textAlign: "center",

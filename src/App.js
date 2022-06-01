@@ -20,15 +20,15 @@ function App() {
         <Router>
           {/* <Navbar /> */}
           <Routes>
-            <Route path="admin_panel" element={<AdminPanel />} />
+            <Route path="/admin_panel" element={<AdminPanel />} />
+            <Route path="/landing" element={<LandingPage />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/detail" element={<Detail />}></Route>
             <Route path="wish_list" element={<WishList />}></Route>
             <Route path="/basket" element={<Basket />}></Route>
             <Route path="/detail/:id" element={<Detail />}></Route>
             <Route path="/store" element={<Store />}></Route>
-            <Route exact path="/" element={<LandingPage />}></Route>
+            <Route exact path="/" element={<Login />}></Route>
             <Route element={<NotFound />}></Route>
           </Routes>
         </Router>

@@ -12,7 +12,7 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   link: {
-    fontSize: "40px",
+    fontSize: "20px",
     color: "#000",
     textDecoration: "none",
     margin: "0 15px",

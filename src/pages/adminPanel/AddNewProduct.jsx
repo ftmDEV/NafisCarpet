@@ -6,6 +6,11 @@ import {
   Grid,
   Select,
   MenuItem,
+  Modal,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from "@mui/material";
 import axios from "axios";
 import { constant } from "../../utils/constant.js";
@@ -32,7 +37,7 @@ const material = [
   { id: 4, name: "ایران", slug: "iran" },
 ];
 
-const AddNewProduct = () => {
+const AddNewProduct = ({ isOpen, setOpenModal }) => {
   const [values, setValues] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
   const { store, dispatch } = useContext(ProductContext);
@@ -59,7 +64,7 @@ const AddNewProduct = () => {
     formData.append("number", values.number);
     formData.append("material", values.material);
     formData.append("description", values.description);
-    formData.append("slug", "slug");
+    formData.append("slug", `slug_${values.name}`);
     formData.append("thumbnail", values.thumbnail);
 
     const token = localStorage.getItem("token");
@@ -77,147 +82,197 @@ const AddNewProduct = () => {
       .catch((err) => {
         setErrorMessage(err.response.message);
       });
+
+    setOpenModal(false);
   };
   return (
-    <div className={classes.root}>
-      <Typography>{errorMessage}</Typography>
-      <Grid container>
-        <Grid item xl={4} md={4} sm={4}>
-          <Typography variant="h5" className={classes.textField}>
-            {constant.ADMIN_PAGE.NAME}
-          </Typography>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            type="text"
-            name="name"
-            fullWidth
-            className={classes.textField}
-            variant="standard"
-            onChange={(e) => handleChange(e)}
-          />
-        </Grid>
-        <Grid item xl={4} md={4} sm={4}>
-          <Typography variant="h5" className={classes.textField}>
-            {constant.ADMIN_PAGE.SHORT_NAME}
-          </Typography>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="short_name"
-            type="text"
-            name="short_name"
-            fullWidth
-            className={classes.textField}
-            variant="standard"
-            onChange={(e) => handleChange(e)}
-          />
-        </Grid>
-        <Grid item xl={4} md={4} sm={4}>
-          <Typography variant="h5" className={classes.textField}>
-            {constant.ADMIN_PAGE.PRICE}
-          </Typography>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="price"
-            type="text"
-            name="price"
-            fullWidth
-            className={classes.textField}
-            variant="standard"
-            onChange={(e) => handleChange(e)}
-          />
-        </Grid>
-        <Grid item xl={4} md={4} sm={4}>
-          <Typography variant="h5" className={classes.textField}>
-            {constant.ADMIN_PAGE.NUMBER}
-          </Typography>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="number"
-            type="text"
-            name="number"
-            fullWidth
-            className={classes.textField}
-            variant="standard"
-            onChange={(e) => handleChange(e)}
-          />
-        </Grid>
-        <Grid item xl={4} md={4} sm={4}>
-          <Typography variant="h5" className={classes.textField}>
-            {constant.ADMIN_PAGE.CATEGORY}
-          </Typography>
-          <Select defaultValue="1" name="category_id" onChange={handleChange}>
-            {category.map((c) => (
-              <MenuItem key={c.id} value={c.id}>
-                {c.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </Grid>
-        <Grid item xl={4} md={4} sm={4}>
-          <Typography variant="h5" className={classes.textField}>
-            {constant.ADMIN_PAGE.MATERIAL}
-          </Typography>
-          <Select defaultValue="ابران" name="material" onChange={handleChange}>
-            {material.map((c) => (
-              <MenuItem key={c.id} value={c.name}>
-                {c.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </Grid>
-        <Grid item xl={4} md={4} sm={4}>
-          <Typography variant="h5" className={classes.textField}>
-            {constant.ADMIN_PAGE.ORIGIN}
-          </Typography>
-          <Select defaultValue="1" name="origin_id" onChange={handleChange}>
-            {origin.map((c) => (
-              <MenuItem key={c.id} value={c.id}>
-                {c.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </Grid>
-      </Grid>
-      <div>
-        <input
-          accept="image/*"
-          className={classes.input}
-          style={{ display: "none" }}
-          id="raised-button-file"
-          multiple
-          type="file"
-          name="thumbnail"
-          onChange={(e) => handleImageUpload(e)}
-        />
-        <label htmlFor="raised-button-file">
-          <Button variant="raised" component="span" className={classes.button}>
-            {constant.ADMIN_PAGE.UPLOUD_BTN}
-          </Button>
-        </label>
-      </div>
-      <div>
-        <Typography variant="h5" className={classes.textField}>
-          {constant.ADMIN_PAGE.DESCRIPTION}
+    <Dialog open={isOpen}>
+      <DialogTitle variant="h2">
+        <Typography variant="h5">
+          {constant.ADMIN_PAGE.ADD_PRODUCT_TITLE}
         </Typography>
-        <TextField
-          autoFocus
-          margin="dense"
-          id="description"
-          type="textarea"
-          name="description"
-          fullWidth
-          className={classes.textField}
-          variant="standard"
-          onChange={(e) => handleChange(e)}
-        />
-      </div>
-      <Button onClick={handleSubmit}>{constant.BUTTONS.SUBMIT}</Button>
-    </div>
+        <Typography>{errorMessage}</Typography>
+      </DialogTitle>
+      <DialogContent>
+        <Grid container spacing={3}>
+          <Grid item xl={6} md={6} sm={6}>
+            <Typography variant="body1" className={classes.textField}>
+              {constant.ADMIN_PAGE.NAME}
+            </Typography>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              type="text"
+              name="name"
+              size="small"
+              fullWidth
+              className={classes.textField}
+              variant="standard"
+              onChange={(e) => handleChange(e)}
+            />
+          </Grid>
+          <Grid item xl={6} md={6} sm={6}>
+            <Typography variant="body1" className={classes.textField}>
+              {constant.ADMIN_PAGE.SHORT_NAME}
+            </Typography>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="short_name"
+              type="text"
+              name="short_name"
+              size="small"
+              fullWidth
+              className={classes.textField}
+              variant="standard"
+              onChange={(e) => handleChange(e)}
+            />
+          </Grid>
+          <Grid item xl={6} md={6} sm={6}>
+            <Typography variant="body1" className={classes.textField}>
+              {constant.ADMIN_PAGE.PRICE}
+            </Typography>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="price"
+              type="text"
+              name="price"
+              size="small"
+              fullWidth
+              className={classes.textField}
+              variant="standard"
+              onChange={(e) => handleChange(e)}
+            />
+          </Grid>
+          <Grid item xl={6} md={6} sm={6}>
+            <Typography variant="body1" className={classes.textField}>
+              {constant.ADMIN_PAGE.NUMBER}
+            </Typography>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="number"
+              type="text"
+              name="number"
+              size="small"
+              fullWidth
+              className={classes.textField}
+              variant="standard"
+              onChange={(e) => handleChange(e)}
+            />
+          </Grid>
+          <Grid item xl={6} md={6} sm={6}>
+            <Typography variant="body1" className={classes.textField}>
+              {constant.ADMIN_PAGE.CATEGORY}
+            </Typography>
+            <Select
+              defaultValue="1"
+              style={{ width: "100%", margin: "10px 0" }}
+              name="category_id"
+              size="small"
+              onChange={handleChange}
+            >
+              {category.map((c) => (
+                <MenuItem key={c.id} value={c.id}>
+                  {c.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </Grid>
+          <Grid item xl={6} md={6} sm={6}>
+            <Typography variant="body1" className={classes.textField}>
+              {constant.ADMIN_PAGE.MATERIAL}
+            </Typography>
+            <Select
+              defaultValue="ابران"
+              style={{ width: "100%", margin: "10px 0" }}
+              name="material"
+              size="small"
+              onChange={handleChange}
+            >
+              {material.map((c) => (
+                <MenuItem key={c.id} value={c.name}>
+                  {c.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </Grid>
+          <Grid item xl={6} md={6} sm={6}>
+            <Typography variant="body1" className={classes.textField}>
+              {constant.ADMIN_PAGE.ORIGIN}
+            </Typography>
+            <Select
+              defaultValue="1"
+              style={{ width: "100%", margin: "10px 0" }}
+              name="origin_id"
+              size="small"
+              onChange={handleChange}
+            >
+              {origin.map((c) => (
+                <MenuItem key={c.id} value={c.id}>
+                  {c.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </Grid>
+          <Grid item xl={6} md={6} sm={6}>
+            <Typography variant="body1" className={classes.textField}>
+              {constant.ADMIN_PAGE.UPLOUD_BTN}
+            </Typography>
+            <TextField
+              name="thumbnail"
+              variant="standard"
+              onChange={(e) => handleChange(e)}
+            />
+          </Grid>
+        </Grid>
+        {/* <div>
+          <input
+            accept="image/*"
+            className={classes.input}
+            style={{ display: "none" }}
+            id="raised-button-file"
+            multiple
+            type="file"
+            name="thumbnail"
+            onChange={(e) => handleImageUpload(e)}
+          />
+          <label htmlFor="raised-button-file">
+            <Button
+              variant="raised"
+              component="span"
+              className={classes.button}
+            >
+              {constant.ADMIN_PAGE.UPLOUD_BTN}
+            </Button>
+          </label>
+        </div> */}
+
+        <div>
+          <Typography variant="body1" className={classes.textField}>
+            {constant.ADMIN_PAGE.DESCRIPTION}
+          </Typography>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="description"
+            type="textarea"
+            name="description"
+            fullWidth
+            className={classes.textField}
+            variant="standard"
+            onChange={(e) => handleChange(e)}
+          />
+        </div>
+      </DialogContent>
+      <DialogActions>
+        <Button variant="contained" onClick={handleSubmit}>
+          {constant.BUTTONS.SUBMIT}
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 

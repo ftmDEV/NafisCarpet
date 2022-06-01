@@ -36,107 +36,118 @@ const Register = () => {
       .then((res) => {
         dispatch({ type: "REGISTER", payload: res.data.access_token });
         localStorage.setItem("token", res.data.access_token);
-        navigate("/");
+        navigate("/landing");
       })
       .catch((err) => {
-        setErrorMessage(err.response.message);
+        switch (err.response.status) {
+          case 401:
+            setErrorMessage("رمز عبور یا نام کاربری اشتباه است");
+            break;
+          case 422:
+            setErrorMessage("فیلد ها را کامل پر کنید");
+            break;
+          case 500:
+            setErrorMessage("سرور با مشکل مواجه است");
+            break;
+          default: {
+            setErrorMessage("اینترنت خود را چک کنید");
+          }
+        }
       });
   };
 
   return (
-    <Grid container spacing={4}>
-      <Grid item xl={4} md={4} sm={6}>
-        <div className={classes.form}>
-          <Typography variant="h2" className={classes.title}>
-            {constant.ACCOUNT_FORM.REGISTER.TITLE}
-          </Typography>
-          <div className={classes.input} style={{ marginTop: "40px" }}>
-            <Typography variant="h5" className={classes.textField}>
-              {constant.ACCOUNT_FORM.REGISTER.USER_NAME}
-            </Typography>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="username"
-              name="name"
-              type="text"
-              fullWidth
-              className={classes.textField}
-              variant="standard"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          <div className={classes.input}>
-            <Typography variant="h5" className={classes.textField}>
-              {constant.ACCOUNT_FORM.REGISTER.EMAIL}
-            </Typography>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="email"
-              name="email"
-              type="email"
-              fullWidth
-              className={classes.textField}
-              variant="standard"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          <div>
-            <Typography variant="h5" className={classes.textField}>
-              {constant.ACCOUNT_FORM.REGISTER.PASSWORD}
-            </Typography>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="password"
-              type="password"
-              name="password"
-              fullWidth
-              className={classes.textField}
-              variant="standard"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          <div>
-            <Typography variant="h5" className={classes.textField}>
-              {constant.ACCOUNT_FORM.REGISTER.CONFIRM_PASSWORD}
-            </Typography>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="password_confirmation"
-              type="password"
-              name="password_confirmation"
-              fullWidth
-              className={classes.textField}
-              variant="standard"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          <Button
-            className={classes.btn}
-            variant="contained"
-            style={{ margin: "20px 0" }}
-            onClick={() => handleSubmit()}
-          >
-            <Typography variant="h5">
-              {constant.ACCOUNT_FORM.REGISTER.TITLE}
-            </Typography>
-          </Button>
-          <Typography
-            variant="h5"
-            className={classes.link}
-            onClick={() => handleLink()}
-          >
-            {constant.ACCOUNT_FORM.REGISTER.LOGED_IN}
-          </Typography>
-        </div>
-      </Grid>
-      <Grid item xl={8} md={8} sm={6}>
-        {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
-      </Grid>
-    </Grid>
+    <div className={classes.form}>
+      <Typography variant="h3" className={classes.title}>
+        {constant.ACCOUNT_FORM.REGISTER.TITLE}
+      </Typography>
+      {errorMessage && (
+        <Alert variant="outlined" severity="error">
+          {errorMessage}
+        </Alert>
+      )}
+      <div className={classes.input} style={{ marginTop: "20px" }}>
+        <Typography variant="h6" className={classes.textField}>
+          {constant.ACCOUNT_FORM.REGISTER.USER_NAME}
+        </Typography>
+        <TextField
+          autoFocus
+          margin="dense"
+          id="username"
+          name="name"
+          type="text"
+          fullWidth
+          className={classes.textField}
+          variant="standard"
+          onChange={(e) => handleChange(e)}
+        />
+      </div>
+      <div className={classes.input}>
+        <Typography variant="h6" className={classes.textField}>
+          {constant.ACCOUNT_FORM.REGISTER.EMAIL}
+        </Typography>
+        <TextField
+          autoFocus
+          margin="dense"
+          id="email"
+          name="email"
+          type="email"
+          fullWidth
+          className={classes.textField}
+          variant="standard"
+          onChange={(e) => handleChange(e)}
+        />
+      </div>
+      <div>
+        <Typography variant="h6" className={classes.textField}>
+          {constant.ACCOUNT_FORM.REGISTER.PASSWORD}
+        </Typography>
+        <TextField
+          autoFocus
+          margin="dense"
+          id="password"
+          type="password"
+          name="password"
+          fullWidth
+          className={classes.textField}
+          variant="standard"
+          onChange={(e) => handleChange(e)}
+        />
+      </div>
+      <div>
+        <Typography variant="h6" className={classes.textField}>
+          {constant.ACCOUNT_FORM.REGISTER.CONFIRM_PASSWORD}
+        </Typography>
+        <TextField
+          autoFocus
+          margin="dense"
+          id="password_confirmation"
+          type="password"
+          name="password_confirmation"
+          fullWidth
+          className={classes.textField}
+          variant="standard"
+          onChange={(e) => handleChange(e)}
+        />
+      </div>
+      <Button
+        className={classes.btn}
+        variant="contained"
+        style={{ margin: "20px 0" }}
+        onClick={() => handleSubmit()}
+      >
+        <Typography variant="h6">
+          {constant.ACCOUNT_FORM.REGISTER.TITLE}
+        </Typography>
+      </Button>
+      <Typography
+        variant="h6"
+        className={classes.link}
+        onClick={() => handleLink()}
+      >
+        {constant.ACCOUNT_FORM.REGISTER.LOGED_IN}
+      </Typography>
+    </div>
   );
 };
 

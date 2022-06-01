@@ -17,12 +17,12 @@
 
 body{
     min-height: auto;
-    font-family: 'Nanum Gothic', sans-serif;
+    /* font-family: 'Nanum Gothic', sans-serif; */
     background: linear-gradient(10deg, #000, #163A0D);
     background-image: url("../images/back3.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size:100%;
+    background-size:cover;
     background-blend-mode: darken;
     width: 100%;
     font-variant-numeric: oldstyle-nums;

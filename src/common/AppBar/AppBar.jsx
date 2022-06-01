@@ -15,6 +15,7 @@ import { constant } from "../../utils/constant";
 // import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 // import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { useStyles } from "./AppBar.style";
+import axios from "axios";
 const pages = constant.MENU;
 
 const account = constant.ACCOUNT;
@@ -40,12 +41,14 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+  const handleLogout = () => {};
+
   return (
     <div position="static" className={classes.root}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
-            variant="h2"
+            variant="h3"
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
@@ -94,7 +97,7 @@ const ResponsiveAppBar = () => {
             </Menu>
           </Box>
           <Typography
-            variant="h3"
+            variant="h4"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
@@ -128,24 +131,26 @@ const ResponsiveAppBar = () => {
                   <FavoriteBorderIcon className={classes.icon} />
                 </IconButton>
               </Tooltip> */}
-              <Typography variant="h4">{constant.TOOLTIPS[0]}</Typography>
+              <Typography variant="h6">{constant.TOOLTIPS[0]}</Typography>
             </NavLink>
-            <NavLink to="/account" className={classes.link}>
+            <NavLink to="/basket" className={classes.link}>
               {/* <Tooltip title={constant.TOOLTIPS[2]}>
                 <IconButton onClick={handleOpenUserMenu}>
                   <AccountBoxIcon className={classes.icon} />
                 </IconButton>
               </Tooltip> */}
-              <Typography variant="h4">{constant.TOOLTIPS[2]}</Typography>
+              <Typography variant="h6">{constant.TOOLTIPS[2]}</Typography>
             </NavLink>
-            <NavLink to="/basket" className={classes.link}>
+            <NavLink to="/" className={classes.link}>
               {/* <Tooltip title={constant.TOOLTIPS[1]}>
               <IconButton>
                 <ShoppingBasketIcon className={classes.icon} />
                 
               </IconButton>
               </Tooltip> */}
-              <Typography variant="h4">{constant.TOOLTIPS[1]}</Typography>
+              <Typography variant="h6" onClick={handleLogout}>
+                {constant.TOOLTIPS[1]}
+              </Typography>
             </NavLink>
             <Menu
               sx={{ mt: "45px" }}

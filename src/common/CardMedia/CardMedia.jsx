@@ -8,6 +8,7 @@ import {
   Button,
   Typography,
   Box,
+  Grid,
 } from "@mui/material";
 //** icons & images */
 import image from "../../assets/images/carpet1.jpg";
@@ -25,16 +26,19 @@ const CommonCard = ({ product, fav, button }) => {
   const { dispatch, store } = useContext(ProductContext);
 
   const handleClick = () => {
+    if (!localStorage.getItem("token")) {
+      setOpenDialog(true);
+    }
     if (fav) {
       dispatch({ type: "REMOVE_FROM_FAVS", payload: product.id });
     } else if (!store.basket.find((b) => b.id === product.id))
       dispatch({ type: "ADD_TO_BASKET", payload: product });
   };
-  useEffect(() => {
-    console.log(store);
-  }, [store]);
+
   const handleFavs = () => {
-    setOpenDialog(true);
+    if (!localStorage.getItem("token")) {
+      setOpenDialog(true);
+    }
     if (!store.favorites.find((f) => f.id === product.id))
       dispatch({ type: "ADD_TO_FAVS", payload: product });
   };
@@ -57,29 +61,29 @@ const CommonCard = ({ product, fav, button }) => {
               <Typography variant="subtitle1">{` ${product.price} ريال`}</Typography>
             </CardContent>
           </Box>
-          <CardActions style={{ display: "flex" }}>
+          {/* <CardActions> */}
+          <Button>
+            <Typography
+              variant="body2"
+              className={classes.button}
+              onClick={() => handleClick()}
+            >
+              {button ? button : constant.BUTTONS.ADD_TO_BASKET}
+            </Typography>
+          </Button>
+          {!fav && (
             <Button>
               <Typography
-                variant="h5"
+                variant="body2"
                 className={classes.button}
-                onClick={() => handleClick()}
+                style={{ width: "150px" }}
+                onClick={() => handleFavs()}
               >
-                {button ? button : constant.BUTTONS.ADD_TO_BASKET}
+                {constant.BUTTONS.ADD_TO_FAVS}
               </Typography>
             </Button>
-            {!fav && (
-              <Button>
-                <Typography
-                  variant="h5"
-                  className={classes.button}
-                  style={{ width: "150px" }}
-                  onClick={() => handleFavs()}
-                >
-                  {constant.BUTTONS.ADD_TO_FAVS}
-                </Typography>
-              </Button>
-            )}
-          </CardActions>
+          )}
+          {/* </CardActions> */}
           <FormDialog openStatus={openDialog} handleClose={closeDialog} />
         </>
       )}
