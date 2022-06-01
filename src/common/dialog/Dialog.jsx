@@ -14,6 +14,7 @@ import {
 import { constant } from "../../utils/constant";
 //**styles */
 import { makeStyles } from "@mui/styles";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +39,10 @@ const useStyles = makeStyles((theme) => ({
 
 const FormDialog = ({ openStatus, handleClose }) => {
   const classes = useStyles();
-
+  const navigate = useNavigate();
+  const handleUnSubmited = () => {
+    navigate("/register");
+  };
   return (
     <div className={classes.root} style={{ backgroundColor: "red" }}>
       <Dialog open={openStatus} onClose={handleClose}>
@@ -79,7 +83,12 @@ const FormDialog = ({ openStatus, handleClose }) => {
               variant="standard"
             />
           </div>
-          <Typography variant="h5" mt={3} className={classes.link}>
+          <Typography
+            variant="h5"
+            mt={3}
+            className={classes.link}
+            onClick={handleUnSubmited}
+          >
             {constant.ACCOUNT_FORM.LOGIN.SIGNED_UP}
           </Typography>
         </DialogContent>

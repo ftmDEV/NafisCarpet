@@ -1,128 +1,63 @@
-import React, { useState } from "react";
-import { DataGrid, faIR } from "@mui/x-data-grid";
-import { headerColumn } from "./header";
-import LinearProgress from "@mui/material/LinearProgress";
-import { Typography } from "@mui/material";
+import React from "react";
+import { Paper, Pagination } from "@mui/material";
+import PropType from "prop-types";
+import { useStyles } from "./Table.Style";
+// import TableToolbar from './TableToolbar';
+import TableHeader from "./TableHeader";
+import { headerColumn } from "../../pages/adminPanel/header";
 
-const rows = [
-  {
-    id: 1,
-    col1: "فرش بیجار",
-    col2: "$345",
-    col3: "3%",
-    col4: "",
-    col5: "5",
-    col6: "01/04/22",
-  },
-  {
-    id: 2,
-    col1: "فرش بیجار",
-    col2: "$766",
-    col3: "3%",
-    col4: "",
-    col5: "5",
-    col6: "01/04/22",
-  },
-  {
-    id: 3,
-    col1: "فرش بیجار",
-    col2: "$766",
-    col3: "3%",
-    col4: "",
-    col5: "5",
-    col6: "01/04/22",
-  },
-  {
-    id: 4,
-    col1: "فرش بیجار",
-    col2: "$345",
-    col3: "3%",
-    col4: "",
-    col5: "5",
-    col6: "01/04/22",
-  },
-  {
-    id: 5,
-    col1: "فرش بیجار",
-    col2: "$766",
-    col3: "3%",
-    col4: "",
-    col5: "5",
-    col6: "01/04/22",
-  },
-  {
-    id: 6,
-    col1: "فرش بیجار",
-    col2: "$766",
-    col3: "3%",
-    col4: "",
-    col5: "5",
-    col6: "01/04/22",
-  },
-  {
-    id: 7,
-    col1: "فرش بیجار",
-    col2: "$345",
-    col3: "3%",
-    col4: "",
-    col5: "5",
-    col6: "01/04/22",
-  },
-  {
-    id: 8,
-    col1: "فرش بیجار",
-    col2: "$766",
-    col3: "3%",
-    col4: "",
-    col5: "5",
-    col6: "01/04/22",
-  },
-  {
-    id: 9,
-    col1: "فرش بیجار",
-    col2: "$766",
-    col3: "3%",
-    col4: "",
-    col5: "5",
-    col6: "01/04/22",
-  },
-];
-const CustomTable = () => {
-  const [checkboxSelection, setCheckboxSelection] = useState(true);
+const Table = (props) => {
+  const {
+    // onAdd,
+    // title,
+    children,
+    // searchState,
+    // handleSearch,
+    // searchData,
+    // addButton,
+  } = props;
+
+  const classes = useStyles();
+
   return (
-    <div style={{ height: 600, width: "100%" }}>
-      <DataGrid
-        rows={rows}
-        columns={headerColumn}
-        components={{
-          LoadingOverlay: LinearProgress,
-        }}
-        checkboxSelection={checkboxSelection}
-        sx={{
-          padding: "10px 30px",
-          boxShadow: 2,
-          border: 2,
-          borderColor: "primary.light",
-          "& .MuiDataGrid-columnHeaderTitleContainer": {
-            fontSize: "27px",
-          },
-          "& .MuiDataGrid-cell": {
-            fontSize: "20px",
-            textAlign: "center",
-          },
-          "& .MuiDataGrid-cell:hover": {
-            color: "primary.main",
-          },
-        }}
-        initialState={{
-          pagination: {
-            pageSize: 10,
-          },
-        }}
-        localeText={faIR.components.MuiDataGrid.defaultProps.localeText}
-      />
-    </div>
+    <Paper
+      style={{
+        width: "100%",
+        margin: "0 0 40px",
+        boxShadow:
+          "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
+      }}
+    >
+      {/* <TableToolbar
+        onAdd={onAdd}
+        title={title}
+        searchState={searchState}
+        handleSearch={handleSearch}
+        searchData={searchData}
+        addButton={addButton}
+      /> */}
+      <TableHeader headers={headerColumn} />
+      <div className={classes.tableBody}>{children}</div>
+      <Pagination count={4} />
+    </Paper>
   );
 };
 
-export default CustomTable;
+Table.propTypes = {
+  headers: PropType.arrayOf(PropType.object).isRequired,
+  children: PropType.node.isRequired,
+  // onAdd: PropType.func,
+  // title: PropType.string,
+  // searchState: PropType.bool,
+  // searchData: PropType.string,
+  // addButton: PropType.bool,
+};
+Table.defaultProps = {
+  // onAdd: () => {},
+  // title: '',
+  // searchState: false,
+  // searchData: '',
+  // addButton: true,
+};
+
+export default Table;

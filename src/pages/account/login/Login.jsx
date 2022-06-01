@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Button, Grid, TextField, Typography, Alert } from "@mui/material";
+import { Button, TextField, Typography, Alert } from "@mui/material";
 import { useStyles } from "../Account.styles";
 import { constant } from "../../../utils/constant";
 import { ProductContext } from "../../../context/context";
@@ -33,77 +33,90 @@ const Login = () => {
       .then((res) => {
         dispatch({ type: "LOGIN", payload: res.data.access_token });
         localStorage.setItem("token", res.data.access_token);
-        navigate("/");
+        if (res.data.user.role_id === 1) {
+          navigate("/admin_panel");
+        } else navigate("/landing");
       })
       .catch((err) => {
-        setErrorMessage(err.response.message);
+        switch (err.response.status) {
+          case 401:
+            setErrorMessage("رمز عبور یا نام کاربری اشتباه است");
+            break;
+          case 422:
+            setErrorMessage("رمز عبور یا نام کاربری اشتباه است");
+            break;
+          case 500:
+            setErrorMessage("سرور با مشکل مواجه است");
+            break;
+          default: {
+            setErrorMessage("اینترنت خود را چک کنید");
+          }
+        }
       });
   };
 
   return (
-    <Grid container spacing={4}>
-      <Grid item xl={4} md={4} sm={6}>
-        <div className={classes.form}>
-          <Typography variant="h2" className={classes.title}>
-            {constant.ACCOUNT_FORM.LOGIN.TITLE}
-          </Typography>
+    <div className={classes.form}>
+      <Typography variant="h2" className={classes.title}>
+        {constant.ACCOUNT_FORM.LOGIN.TITLE}
+      </Typography>
+      {errorMessage && (
+        <Alert variant="outlined" severity="error">
+          {errorMessage}
+        </Alert>
+      )}
 
-          <div className={classes.input} style={{ margin: "100px 0 0" }}>
-            <Typography variant="h5" className={classes.textField}>
-              {constant.ACCOUNT_FORM.LOGIN.EMAIL}
-            </Typography>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="email"
-              name="email"
-              type="email"
-              fullWidth
-              className={classes.textField}
-              variant="standard"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          <div>
-            <Typography variant="h5" className={classes.textField}>
-              {constant.ACCOUNT_FORM.LOGIN.PASSWORD}
-            </Typography>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="password"
-              type="password"
-              name="password"
-              fullWidth
-              className={classes.textField}
-              variant="standard"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
+      <div className={classes.input} style={{ margin: "100px 0 0" }}>
+        <Typography variant="h5" className={classes.textField}>
+          {constant.ACCOUNT_FORM.LOGIN.EMAIL}
+        </Typography>
+        <TextField
+          autoFocus
+          margin="dense"
+          id="email"
+          name="email"
+          type="email"
+          fullWidth
+          className={classes.textField}
+          variant="standard"
+          onChange={(e) => handleChange(e)}
+        />
+      </div>
+      <div>
+        <Typography variant="h5" className={classes.textField}>
+          {constant.ACCOUNT_FORM.LOGIN.PASSWORD}
+        </Typography>
+        <TextField
+          autoFocus
+          margin="dense"
+          id="password"
+          type="password"
+          name="password"
+          fullWidth
+          className={classes.textField}
+          variant="standard"
+          onChange={(e) => handleChange(e)}
+        />
+      </div>
 
-          <Button
-            className={classes.btn}
-            variant="contained"
-            style={{ margin: "20px 0" }}
-            onClick={() => handleSubmit()}
-          >
-            <Typography variant="h4">
-              {constant.ACCOUNT_FORM.LOGIN.TITLE}
-            </Typography>
-          </Button>
-          <Typography
-            variant="h5"
-            className={classes.link}
-            onClick={() => handleLink()}
-          >
-            {constant.ACCOUNT_FORM.LOGIN.SIGNED_UP}
-          </Typography>
-        </div>
-      </Grid>
-      <Grid item xl={8} md={8} sm={6}>
-        {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
-      </Grid>
-    </Grid>
+      <Button
+        className={classes.btn}
+        variant="contained"
+        style={{ margin: "20px 0" }}
+        onClick={() => handleSubmit()}
+      >
+        <Typography variant="h4">
+          {constant.ACCOUNT_FORM.LOGIN.TITLE}
+        </Typography>
+      </Button>
+      <Typography
+        variant="h5"
+        className={classes.link}
+        onClick={() => handleLink()}
+      >
+        {constant.ACCOUNT_FORM.LOGIN.SIGNED_UP}
+      </Typography>
+    </div>
   );
 };
 

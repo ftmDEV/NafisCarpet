@@ -38,13 +38,13 @@ const SelectSmall = ({ label, items, onInputChange }) => {
         labelId="demo-select-small"
         id="demo-select-small"
         value={value}
-        label={label}
+        // label={label}
         onChange={handleChange}
         className={classes.select}
       >
-        {/* <MenuItem value="">
+        <MenuItem value="">
           <em>None</em>
-        </MenuItem> */}
+        </MenuItem>
         {items.map((item) => (
           <MenuItem value={item.id}>{item.name}</MenuItem>
         ))}
