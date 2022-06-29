@@ -1,28 +1,27 @@
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
+import * as React from "react";
+import Typography from "@mui/material/Typography";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Link from "@mui/material/Link";
 
 function handleClick(event) {
   event.preventDefault();
-  console.info('You clicked a breadcrumb.');
+  console.info("You clicked a breadcrumb.");
 }
 
-export default function BasicBreadcrumbs() {
+export default function BasicBreadcrumbs({ product }) {
   return (
     <div role="presentation" onClick={handleClick}>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" href="/">
-          MUI
+      <Breadcrumbs
+        aria-label="breadcrumb"
+        style={{ fontSize: "30px", marginBottom: "20px" }}
+      >
+        <Link underline="hover" color="inherit" to="/landing">
+          صفحه اصلی
         </Link>
-        <Link
-          underline="hover"
-          color="inherit"
-          href="/material-ui/getting-started/installation/"
-        >
-          Core
+        <Link underline="hover" color="inherit" to="/store">
+          فروشگاه
         </Link>
-        <Typography color="text.primary">Breadcrumbs</Typography>
+        <Typography variant="h4">{product}</Typography>
       </Breadcrumbs>
     </div>
   );

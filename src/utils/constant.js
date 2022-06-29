@@ -1,4 +1,15 @@
+//* drawer icons */
+import dashboard from "../assets/icons/Vector-4.svg";
+import token from "../assets/icons/Vector.svg";
+import exit from "../assets/icons/Vector-5.svg";
+import wallet from "../assets/icons/Vector-2.svg";
+import forum from "../assets/icons/Vector-3.svg";
+import game from "../assets/icons/3-Friends.svg";
+import upgrade from "../assets/icons/Vector-6.svg";
+import upgrade1 from "../assets/icons/Vector-7.svg";
+
 export const constant = {
+  DRAWER_WIDTH: "200px",
   API_ADDRESS: "http://api.developer-studio.ir",
   LOGO: "قالیچه نفیس",
   LANDING: {
@@ -31,8 +42,8 @@ export const constant = {
     { id: 3, label: "درباره ما", link: "/about_us" },
     { id: 4, label: "ارتباط با ما", link: "/contact_us" },
   ],
-  TOOLTIPS: ["لیست علاقه مندی ها", "خروج", "سبد خرید"],
-  ACCOUNT: ["ثبت نام", "ورود", "خروج"],
+  TOOLTIPS: ["لیست علاقه مندی ها", "پروفایل", "سبد خرید"],
+  ACCOUNT: ["ثبت نام", "ورود", "خروج", "تکمیل پروفایل"],
   BUTTONS: {
     ADD_TO_BASKET: "اضافه کردن به سبد خرید",
     ADD_TO_FAVS: "اضافه کردن به لیست علاقه مندی ها",
@@ -42,6 +53,7 @@ export const constant = {
     ABOUT_CLEANING: "درباره شستشو",
     SHOP_NOW: "همین حالا خرید کن",
     CONSULTANT_INFO: "درخواست مشاوره",
+    SEE_MORE: "مشاهده اطلاعات بیشتر",
     SUBMIT: "ثبت",
     CANCLE: "انصراف",
   },
@@ -70,6 +82,7 @@ export const constant = {
   },
   FILTER_BY: {
     LABEL: "فیلتر بر اساس",
+    CATEGORIES: "",
     COLOR: "رنگ",
     SIZE: "اندازه",
     SIZES: [
@@ -132,5 +145,52 @@ export const constant = {
     DISCOUNT: "درصد تخفیف",
     DESCRIPTION: "توضیحات",
     UPLOUD_BTN: "آپلود عکس",
+  },
+  DRAWER_MENU_ITEMS: [
+    {
+      id: 1,
+      link: "/dashboard",
+      name: "داشبورد",
+      icon: dashboard,
+    },
+    { id: 2, link: "/userUpgrade", name: "ارتقای سطح کاربری", icon: upgrade1 },
+    { id: 3, link: "/meterManagement", name: "مدیریت کنتور ها", icon: upgrade },
+    { id: 4, link: "/tokens", name: "توکن ها", icon: token },
+    {
+      id: 6,
+      name: "بازی",
+      link: "/games",
+      icon: game,
+      subs: [
+        { id: 61, subname: "بازی های ایجاد شده", link: "/createdGames" },
+        { id: 62, subname: "بازی های جدید", link: "/newGames" },
+        { id: 63, subname: "بازی های انجام شده", link: "/playedGames" },
+        { id: 64, subname: "اعلام نیاز", link: "/gameCall" },
+      ],
+    },
+    {
+      id: 7,
+      name: "تالار معاملاتی",
+      link: "/tradingForum",
+      icon: forum,
+      subs: [
+        {
+          id: 71,
+          subname: "تالار توکن های خدماتی",
+          link: "/serviceTokenForum",
+        },
+        { id: 72, subname: "تالار توکن های بتا", link: "/betaTokenForum" },
+      ],
+    },
+    { id: 8, link: "/wallet", name: "کیف پول", icon: wallet },
+    { id: 9, link: "/exit", name: "خروج", icon: exit },
+  ],
+  PROFILE: {
+    USER_NAME: "ارمیا نظریان",
+    WELCOME_MESSAGE: "خوش آمدید",
+    PROFILE_DROP_DOWN: [
+      { id: 1, title: "تکمیل پروفایل", link: "/profile" },
+      { id: 2, title: "خروج", link: "/login" },
+    ],
   },
 };

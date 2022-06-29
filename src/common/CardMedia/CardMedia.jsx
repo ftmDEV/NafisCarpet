@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 //** icons & images */
 import image from "../../assets/images/carpet1.jpg";
+import star from "../../assets/images/star.png";
 //**styles */
 import { useStyles } from "./CardMedia.Style";
 //**Context */
@@ -44,7 +45,7 @@ const CommonCard = ({ product, fav, button }) => {
   };
   const navigate = useNavigate();
   const goToDetail = () => {
-    navigate(`/detail/${product.id}`, { param: product });
+    navigate(`/detail/${product.slug}`, { param: product });
   };
 
   const closeDialog = () => {
@@ -54,36 +55,40 @@ const CommonCard = ({ product, fav, button }) => {
     <div className={classes.card}>
       {product && (
         <>
-          <img alt="" src={image} onClick={() => goToDetail()} />
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <CardContent onClick={() => goToDetail()}>
-              <Typography variant="h4">{product.short_name}</Typography>
-              <Typography variant="subtitle1">{` ${product.price} ريال`}</Typography>
-            </CardContent>
-          </Box>
-          {/* <CardActions> */}
-          <Button>
-            <Typography
-              variant="body2"
-              className={classes.button}
-              onClick={() => handleClick()}
+          <div className={classes.star} onClick={() => handleFavs()}>
+            <img alt="" src={star} />
+          </div>
+          <img alt="" src={image} />
+          <div className={classes.flex}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
             >
-              {button ? button : constant.BUTTONS.ADD_TO_BASKET}
-            </Typography>
-          </Button>
-          {!fav && (
+              <CardContent onClick={() => goToDetail()}>
+                <Typography variant="h4" className={classes.title}>
+                  {product.short_name}
+                </Typography>
+                <Typography variant="subtitle1">{` ${product.price} ريال`}</Typography>
+              </CardContent>
+            </Box>
+            {/* <CardActions> */}
             <Button>
               <Typography
                 variant="body2"
                 className={classes.button}
-                style={{ width: "150px" }}
-                onClick={() => handleFavs()}
+                onClick={() => handleClick()}
               >
-                {constant.BUTTONS.ADD_TO_FAVS}
+                {button ? button : constant.BUTTONS.ADD_TO_BASKET}
               </Typography>
             </Button>
-          )}
-          {/* </CardActions> */}
+          </div>
+          <div className={classes.hoverContainer} onClick={() => goToDetail()}>
+            <Typography variant="subtitle1">
+              {constant.BUTTONS.SEE_MORE}
+            </Typography>
+          </div>
           <FormDialog openStatus={openDialog} handleClose={closeDialog} />
         </>
       )}

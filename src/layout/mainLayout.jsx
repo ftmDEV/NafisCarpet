@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "@mui/material";
 import Navbar from "../components/navbar";
 const MainLayout = ({ children }) => {
-  <Container fluid>
+  <Container>
     <Navbar />
     {children}
   </Container>;

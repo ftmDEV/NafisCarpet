@@ -1,20 +1,68 @@
 import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles((theme) => ({
+  flex: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1.3fr",
+  },
   card: {
     backgroundColor: theme.palette.cream.light,
     padding: "15px 0",
     height: "auto",
+    borderRadius: "10px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
+    position: "relative",
     "& img": {
       width: "75%",
       marginTop: "24px",
+      borderRadius: "10px",
     },
   },
+
+  hoverContainer: {
+    width: "100%",
+    background: theme.palette.red.linear,
+    position: "absolute",
+    bottom: 0,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    transition: "30",
+    opacity: 1,
+    "&:hover": {
+      height: "100%",
+      top: 0,
+      opacity: "0.95",
+      transform: "translateY(0)",
+    },
+  },
+  star: {
+    width: "50px",
+    height: "50px",
+    borderRadius: "50%",
+    // backgroundColor: theme.palette.cream.light,
+    backgroundColor: "#fff",
+    padding: "0",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    top: "20px",
+    right: "8%",
+    cursor: "pointer",
+    "& img": {
+      margin: 0,
+      padding: 0,
+    },
+    "&:hover": {
+      transform: "scale(1.03)",
+    },
+  },
+
   button: {
     width: "100px",
     height: "40px",
@@ -26,6 +74,10 @@ export const useStyles = makeStyles((theme) => ({
     color: "white",
     fontSize: "40px",
     curser: "pointer",
+    "&:hover": {
+      transform: "scale(1.03)",
+      backgroundColor: theme.palette.cream.main,
+    },
   },
   shoppingCart: {
     backgroundColor: "#d3d3d3",

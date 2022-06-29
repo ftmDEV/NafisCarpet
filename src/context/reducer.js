@@ -1,8 +1,10 @@
 export const initialState = {
   token: "",
   products: [],
+  productDetail: {},
   basket: [],
   favorites: [],
+
 };
 const Reducer = (state, action) => {
   switch (action.type) {
@@ -13,6 +15,11 @@ const Reducer = (state, action) => {
       return {
         ...state,
         products: [...action.payload],
+      };
+    case "GET_PRODUCT_DETAIL":
+      return {
+        ...state,
+        productDetail: { ...action.payload },
       };
     case "ADD_TO_BASKET":
       return {
